@@ -15,7 +15,7 @@
     var spreadsheetId = "13JAvU5nRGtMGVH2AeqvKR4B_mcw0jD6RcNlz0KGBd5M";
 
     // GitHub secret for API key
-    var apiKey = "${{ secrets.API }}";
+    var apiKey = "${{secrets.API}}";
 
     // Google Sheets API endpoint
     var sheetsEndpoint = "https://sheets.googleapis.com/v4/spreadsheets/" + spreadsheetId + "/values/Sheet1!A:B?key=" + apiKey;
