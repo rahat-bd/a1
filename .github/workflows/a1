@@ -1,0 +1,28 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Use Secret in JavaScript
+        run: |
+          echo "GS_API_KEY=${{ secrets.MY_SECRET_TOKEN }}" >> $GITHUB_ENV
+          # Now you can access the secret in your JavaScript code using process.env.GS_API_KEY
+          node your_script.js
