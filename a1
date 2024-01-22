@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website Title</title>
+</head>
+<body>
+
+<!-- Your HTML content here -->
+
+<script>
+  // Replace 'YOUR_SHEET_ID' with your actual Google Sheet ID
+  var sheetId = '13JAvU5nRGtMGVH2AeqvKR4B_mcw0jD6RcNlz0KGBd5M';
+
+  // OAuth 2.0 client ID
+  var clientId = '906223634720-akl468agdgototjb20tp4gacbl72g14g.apps.googleusercontent.com';
+
+  // The range of data you want to fetch (e.g., A1:B10)
+  var range = 'Sheet1!A:B';
+
+  // Load the Google API client library
+  gapi.load('client', initClient);
+
+  function initClient() {
+    gapi.client.init({
+      apiKey: 'AIzaSyCPYRC1gGj4dVqS5TyBYnIyg_EuX9irglo',
+      clientId: clientId,
+      discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+      scope: "https://www.googleapis.com/auth/spreadsheets.readonly"
+    }).then(function() {
+      // Fetch data from the Google Sheets API
+      gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: sheetId,
+        range: range
+      }).then(function(response) {
+        var values = response.result.values;
+
+        // Process and display the data as needed
+        values.forEach(row => {
+          var columnAData = row[0];
+          var columnBData = row[1];
+
+          // Use the data as needed (e.g., append to HTML)
+          // Example: document.body.innerHTML += '<p>' + columnAData + ' | ' + columnBData + '</p>';
+        });
+      });
+    });
+  }
+</script>
+
+<!-- Include the Google API client library -->
+<script src="https://apis.google.com/js/api.js"></script>
+
+</body>
+</html>
