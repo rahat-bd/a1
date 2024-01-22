@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheets API Demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<div id="data-container"></div>
+
+<script>
+    // Fetch the API key from the environment variable
+    var apiKey = process.env.GS_API_KEY;
+    // Replace YOUR_SPREADSHEET_ID with your actual spreadsheet ID
+    var spreadsheetId = "13JAvU5nRGtMGVH2AeqvKR4B_mcw0jD6RcNlz0KGBd5M";
+
+    // Google Sheets API endpoint
+    var sheetsEndpoint = "https://sheets.googleapis.com/v4/spreadsheets/" + spreadsheetId + "/values/Sheet1!A:B?key=" + apiKey;
+
+    // Fetch data from Google Sheets
+    $.get(sheetsEndpoint, function(data) {
+        var values = data.values;
+
+        // Display data in the #data-container element
+        var dataContainer = $("#data-container");
+        values.forEach(function(row) {
+            dataContainer.append("<p>Column A: " + row[0] + ", Column B: " + row[1] + "</p>");
+        });
+    });
+</script>
+
+</body>
+</html>
