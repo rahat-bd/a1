@@ -11,8 +11,8 @@
 <div id="data-container"></div>
 
 <script>
-    // Replace YOUR_API_KEY with your actual API key
-    var apiKey = "AIzaSyCPYRC1gGj4dVqS5TyBYnIyg_EuX9irglo";
+    // Retrieve the API key from GitHub Actions secret
+    var apiKey = "${{ secrets.API }}";
     // Replace YOUR_SPREADSHEET_ID with your actual spreadsheet ID
     var spreadsheetId = "13JAvU5nRGtMGVH2AeqvKR4B_mcw0jD6RcNlz0KGBd5M";
 
