@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Deploy to Web Server
 
 on:
   push:
@@ -6,23 +6,30 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
 
-      - name: Install Dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Use Secret in JavaScript
-        run: |
-          echo "GS_API_KEY=${{ secrets.MY_SECRET_TOKEN }}" >> $GITHUB_ENV
-          # Now you can access the secret in your JavaScript code using process.env.GS_API_KEY
-          node your_script.js
+    - name: Deploy HTML File
+      env:
+        WEB_SERVER_TOKEN: ${{ secrets.WEB_SERVER_TOKEN }}
+      run: |
+        # Replace the following commands with your actual deployment commands
+        echo "Deploying HTML file"
+        echo "Using secret: $WEB_SERVER_TOKEN"
+        
+        # Replace the placeholder in the HTML file with the secret value
+        sed -i "s|<API_TOKEN_PLACEHOLDER>|$WEB_SERVER_TOKEN|g" index.html
+        
+        # Your deployment commands here
