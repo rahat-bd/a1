@@ -14,7 +14,8 @@
 
     <!-- Display the secret in the HTML -->
     <script>
-        document.write(`<p>My secret is: ${mySecret}</p>`);
+        document.write(`<p>My secret is: <span id="mySecret"></span></p>`);
+        document.getElementById("mySecret").innerText = mySecret;
     </script>
 </body>
 </html>
