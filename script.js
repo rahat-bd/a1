@@ -1,3 +1,3 @@
 // script.js
-const mySecret = "your_actual_secret_value";
+const mySecret = process.env.MY_SECRET;
 console.log(`My secret is ${mySecret}`);
